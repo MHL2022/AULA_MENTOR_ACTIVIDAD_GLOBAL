@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+  <link rel="stylesheet" href="css/themes/marco.min.css" />
+  <title>CALCULADORA DE DIVISAS</title>
+  <style type="text/css"> 
+      .label-warning{
+        background-color:#33cccc;
+        text-align:center;
+       
+      }
+      .label-success {
+        background-color:#33cccc;
+        
+      }
+
+  </style>
+</head>
+<body>
+<h1>
+  <span class="label label-success" >CALCULADORA DE DIVISAS</span>
+</h1>
+<div class="row">
+  <div class="col-xs-12"> 
+    <form name="formulario" id="formulario">
+            <span class="label label-warning">Cantidad Inicial</span>
+            <input class="form-control" type="text" name="cantidad" id="cantidad" onChange="calcular()">
+            <br>
+                      <span class="label label-warning">Tipo de Cambio</span>
+                      <select class="form-control" name="opciones" id="opciones" onChange="calcular()">
+                        <option value="dol_bit">Dolares a Bitcoin</option>
+                        <option value="bit_dol">Bitcoin a Dolares</option>
+                        <option value="eu_bit">Euros a Bitcoin</option>
+                        <option value="bit_eu">Bitcoin a Euros</option>
+                        <option value="eu_eth">Euros a Ethereum</option>
+                        <option value="eth_eu">Ethereum a Euros</option>
+                      </select>
+                      <br>
+
+                      <span class="label label-success">Resultado - Cambio</span>
+                      <input class="form-control" type="text" name="resultado" readonly="readonly">
+                      <br>
+
+                      <button type="button" class="btn btn-info" onclick="limpiar()">LIMPIAR</button>
+              </form>
+            </div>
+            <div class="col-sm-12"> 
+              
+            </div>
+            <div class="col-md-12"> 
+              
+            </div>
+           
+          </div>
+          <script id="jsbin-javascript">
+            //HICE LA PRUEBA A USAR VAL() EN LUGAR DE VALUE Y ME DA ERROR
+            function limpiar(){
+            document.getElementById("cantidad").value="";
+            document.formulario.resultado.value ="";
+          }
+          //VARIABLES Y LA FUNCIÓN CALCULAR
+            function calcular (){
+            var tipo = document.getElementById("opciones").value;
+            var cantidad = document.getElementById("cantidad").value;
+            var resultado;
+            
+            if( (cantidad - 0) != cantidad && (''+cantidad).replace(/^\s+|\s+$/g, "").length > 0)
+              {
+                alert("Ingrese numeros");
+                return false;
+              }
+              //CONVERSIONES://DOLAR A BITCOIN Y VICEVERSA
+            else
+              {
+                if(tipo === "dol_bit")   
+                  {
+                  resultado = cantidad / 57571.20;
+                  }
+                else if (tipo === "bit_dol")
+                  {
+                  resultado = cantidad * 57571.20;
+                  }
+               //CONVERSIONES://EURO A BITCOIN Y VICEVERSA   
+                else if (tipo === "eu_bit")
+                  {
+                  resultado = cantidad / 57571.20;
+                  }
+                else if (tipo === "bit_eu")
+                  {
+                  resultado = cantidad * 57571.20;
+                  }
+                //CONVERSIONES://EURO A ETHEREUM Y VICEVERSA  
+                else if (tipo === "eu_eth")
+                  {
+                  resultado = cantidad / 3918.11;
+                  }
+                else if (tipo === "eth_eu")
+                  {
+                  resultado = cantidad * 3918.11;
+                  }
+                  //RESULTADO
+                return document.formulario.resultado.value = resultado;
+              }
+          }
+          </script>
+</body>
+</html>

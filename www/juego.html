@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>juego</title>
+    <!--<style>
+    	* { padding: 0; margin: 0; }
+    	canvas { background: #A1F5FA; display: block; margin: 0 auto; }
+    </style>-->
+        <!--Fichero donde tendremos nuestro script de estilo css-->
+    <link rel="stylesheet" type="text/css" href="css/miestilo.css">
+     <!--Fichero donde tendremos nuestro script de js-->
+    
+    <script type="text/javascript" src="js/mijs.js"></script>
+
+</head>
+<body>
+
+<canvas id="myCanvas" width="480" height="320">
+	
+</canvas>
+
+<script  type ="text/javascript">
+	//podemos poner el script js en esta sección, yo hice un archivo externo : mijs.js
+	//definición de variables
+	
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+	var x = canvas.width/2;
+	var y = canvas.height-30;
+	var dx = 2;
+	var dy = -2;
+	var ballRadius = 10;
+
+	//FORMA DE LA TABLA
+	var paddleHeight = 10;
+	var paddleWidth = 75;
+	var paddleX = (canvas.width-paddleWidth)/2;	
+	var rightPressed = false;
+	var leftPressed = false;
+
+	//VARIABLE DE LOS LADRILLOS
+	var brickRowCount = 3;
+	var brickColumnCount = 5;
+	var brickWidth = 75;
+	var brickHeight = 20;
+	var brickPadding = 10;
+	var brickOffsetTop = 30;
+	var brickOffsetLeft = 30;
+
+	// variable contador
+	var score = 0;
+	// variable para dar vidas al jugador
+	var lives = 3;
+
+	//COLUMNA Y FILA DONDE GUARDAMOS LO LADRILLOS: 00 01...EL ÚLTIMO ES 24
+	var bricks = [];
+for(c=0; c<brickColumnCount; c++) {
+    bricks[c] = [];
+    for(r=0; r<brickRowCount; r++) {
+        bricks[c][r] = { x: 0, y: 0,status:1 };
+    }
+}
+// código para dibujar la bola
+	function drawBall() {
+    ctx.beginPath();
+    ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+    ctx.fillStyle = "#4d4d4d";
+    ctx.fill();
+    ctx.closePath();
+}
+// código para dibujar la paleta
+	function drawPaddle() {
+    ctx.beginPath();
+    ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
+    ctx.fillStyle = "#4d4d4d";
+    ctx.fill();
+    ctx.closePath();
+}
+// código para mover
+	function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawPaddle(); //LLAMAMOS A LAS FUNCIONES DE DIBUJO DE LA PALETA , LOS LADRILLOS Y LA BOLA
+    drawScore();
+    drawLives();
+    collisionDetection();
+    drawBricks();
+    drawBall();
+    
+     if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+    dx = -dx;
+	}
+    if(y + dy < ballRadius) {
+    dy = -dy;
+	} 
+	else if(y + dy > canvas.height-ballRadius) {
+     if(x > paddleX && x < paddleX + paddleWidth) {
+        dy = -dy;
+    }
+    else {
+        lives--;
+		if(!lives) {
+		    alert("las liao parda :( ");
+		    document.location.reload();
+		}
+		else {
+		    x = canvas.width/2;
+		    y = canvas.height-30;
+		    dx = 2;
+		    dy = -2;
+		    paddleX = (canvas.width-paddleWidth)/2;
+		}
+	  }
+
+	}
+	if(rightPressed && paddleX < canvas.width-paddleWidth) {
+		    paddleX += 7;
+	}
+	else if(leftPressed && paddleX > 0) {
+	    paddleX -= 7;
+	}
+	x += dx;
+    y += dy;
+    requestAnimationFrame(draw);
+}
+//FUNCIÓN PARA DIBUJAR TODOS LOS LADRILLOS EN PANTALLA
+	function drawBricks() {
+    for(c=0; c<brickColumnCount; c++) {
+        for(r=0; r<brickRowCount; r++) {
+            if(bricks[c][r].status == 1) {
+                var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
+                var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
+                bricks[c][r].x = brickX;
+                bricks[c][r].y = brickY;
+                ctx.beginPath();
+                ctx.rect(brickX, brickY, brickWidth, brickHeight);
+                ctx.fillStyle = "#ece683";
+                ctx.fill();
+                ctx.closePath();
+            }
+        }
+    }
+}
+//ayudar al navegador a refrescar las imágenes
+draw();
+// captamos las pulsaciones del teclado
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+// captamos el movimiento del ratón
+document.addEventListener("mousemove", mouseMoveHandler, false);
+// pulsación y liberación de la tecla pulsada
+function keyDownHandler(e) {
+    if(e.keyCode == 39) {
+        rightPressed = true;
+    }
+    else if(e.keyCode == 37) {
+        leftPressed = true;
+    }
+}
+
+function keyUpHandler(e) {
+    if(e.keyCode == 39) {
+        rightPressed = false;
+    }
+    else if(e.keyCode == 37) {
+        leftPressed = false;
+    }
+}
+//asociar el moviemiento del ratón con el de la pala
+function mouseMoveHandler(e) {
+    var relativeX = e.clientX - canvas.offsetLeft;
+    if(relativeX > 0 && relativeX < canvas.width) {
+        paddleX = relativeX - paddleWidth/2;
+    }
+}
+// función para detectar colisiones
+function collisionDetection() {
+    for(c=0; c<brickColumnCount; c++) {
+        for(r=0; r<brickRowCount; r++) {
+            var b = bricks[c][r];
+            if(b.status == 1) {
+                if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
+                    dy = -dy;
+                    b.status = 0;
+                     score++;
+                     if(score == brickRowCount*brickColumnCount) {
+                        alert("¡¡has ganao :) !!");
+                        document.location.reload();
+                    }
+                }
+            }
+        }
+    }
+}
+//mostrar el contador de puntos
+
+function drawScore() {
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "#4d4d4d";
+    ctx.fillText("Score: "+score, 8, 20);
+}
+//mostrar el número de vidas
+function drawLives() {
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "#4d4d4d";
+    ctx.fillText("Lives: "+lives, canvas.width-65, 20);
+}
+
+</script>
+
+</body>
+</html>

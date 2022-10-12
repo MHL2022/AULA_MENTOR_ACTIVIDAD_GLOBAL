@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!-- Abrimos la etiqueta de la página -->
+<html lang="es">
+<!-- Definimos el head -->
+<head>
+    <title> CRYPTOLANDIA</title>
+    <meta charset="utf-8" />
+   
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+
+    <script src="js/app.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.3.min.css">
+
+    <link rel="stylesheet" href="css/themes/marco.min.css" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+
+    <link rel="stylesheet" type="text/css" href="css/miestiloTG.css">
+   
+
+</head>
+<body style="text-align:center;">   
+    
+<header>
+</header>
+        
+
+    <nav id="menu"><!-- menú de navegación superior -->
+        <ul>
+            <li><a href="index2.html">INICIO</a></li>                             
+
+            <li><a href="exchange.html">EXCHANGE</a></li>                      
+     
+            <li><a href="noticias.html">NOTICIAS</a></li>
+
+            <li><a href="juegos.html">JUEGOS</a></li>
+
+            <li><a href="contacto.html">CONTACTO</a></li>
+
+            <li><a href="index.html">Versión Móbil </a></li>                           
+        </ul>
+    </nav>
+    
+<div id="formulario">
+            
+           <form method="post" name="formularioContactar" action="enviar.php" id="formularioContactar" >
+
+            <label for="nombreContactar">Introduce tu nombre:</label>
+            <input type="text" name="nombreContactar" id="nombreContactar" placeholder="Introduce tu nombre" required><br><br>
+
+            <label for="apellidosContactar">Introduce tus apellidos:</label>
+            <input type="text" name="apellidosContactar" id="apellidosContactar" placeholder="Introduce tus apellidos" required><br><br>
+
+            <label for="mailContactar">Introduce tu email:</label>
+            <input type="email" name="mailContactar" id="mailContactar" placeholder="Introduce tu email" required><br><br><br>
+
+            <label for="comentariosContactar">Comentarios:</label>
+            <br><br>
+            <textarea cols="40" rows="10" name="comentariosContactar" id="comentariosContactar" placeholder="Comentarios" required>
+            </textarea>
+            <br><br>
+            <input type="submit" name="btnEnviar" id="btnEnviar" value="ENVIAR FORMULARIO">
+            <input type="reset" name="btnreset" value="Restaurar valores por defecto"/>
+
+        </form>
+                
+        </div>
+
+          
+    
+</body>
+</html>

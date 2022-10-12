@@ -1,0 +1,124 @@
+
+
+/* ======== JUEGO========== */	
+
+
+	* { padding: 0; margin: 0; }
+    	canvas { background: #33cccc; display: block; margin: 0 auto; }
+/* ======== SELECTORES DE ID ========== */
+
+
+#imagenempresa {
+    position: relative;
+    margin: 10px;
+    text-align: center;
+}
+
+#crypto {
+	height: 100px;
+    width: 100px;
+}
+
+
+#calculador {
+	position: relative;
+    margin: 0 auto;
+    text-align: center;	
+}
+
+#desplegables {
+    position: relative;
+    margin: 0px;
+}
+
+#bitcoin {
+
+    width: 80%;
+
+}
+
+#ventas{
+
+	/*Posición y tamaño*/
+	margin: auto;
+	margin-top: 50px;
+
+
+}
+
+#numero{
+
+	padding-left: 2px;
+	padding-right: 2px;
+
+	background-color: white;
+
+	/*Border*/
+	border: 1px solid black;*/
+
+}
+
+#articulos {
+	position: relative;
+    margin: 0px;
+}
+#corteingles {
+	width: 300px;
+	height:200px;
+}
+#mujer1 {
+	width: 300px;
+	height:500px;
+}
+
+#mujer4 {
+	width: 300px;
+	height:500px;
+}
+
+#horayvalor {
+	text-align: center;
+}
+
+#woman {
+	position: relative;
+    margin: 0px;
+    text-align: center;
+}
+
+#imagengrafica {
+	position: relative;
+    margin: 0px;
+    text-align: center;
+
+}
+
+#grafica {
+	
+	width: 85%;
+	
+}
+
+#hora{
+	float:right;
+}
+
+#cotiza{
+	float:left;
+}
+
+
+/* Color y posición para los h1 usados únicamente en el título de la página */
+h1 {
+    color: white;
+    text-align: center;
+}
+
+
+
+/* ======== coloir del body ========== */
+
+
+/* ======== SELECTORES DE CLASE ========== */
+
+

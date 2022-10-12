@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>		
+
+	<meta charset="utf-8" />
+	 <link rel="stylesheet" type="text/css" href="css/miestiloTG.css">	
+	<title>Cryptocalculadora</title>
+	<script src="js/app.js"></script>
+</head>
+<body>
+	<div id="crypto1">
+	<center>
+	
+		<h1> Crypto Conversor </h1>
+		Cantidad: <input type="range" id="cantidad" min="0" max="1000" value="0" onchange="convertir()">
+		<span id="valor">0</span> <br> <br>
+			<div id="crypto2">
+		<!--SELECTOR DE MONEDA DE ORIGEN DOLAR O EURO-->
+		Convertir De:
+			<select id="de" onchange="convertir()">
+			<option value="1"> Euro </option>
+			<option value="2"> Dolar (USD)</option>
+		</select> <br> <br>
+		<!--SELECTOR DE CRYPTOMONEDA DE DESTINO-->
+		Convertir A:
+		<select id="a" onchange="convertir()">
+			<option value="3"> Bitcoin</option>
+			<option value="4"> Ethereum</option>
+			<option value="5"> Dash</option>
+			<option value="6"> Litecoin</option>
+			<option value="7"> Ripple</option>
+			<option value="8"> Neo</option>
+			<option value="9"> Iota</option>
+			<option value="10"> Zcash</option>
+			<option value="11"> Monero</option>
+		</select> <br>
+		<h1 id="resultado"> 0.00</h1>
+	</div>
+		
+	</center>
+	</div>
+
+
+	<script  type ="text/javascript">
+		function convertir()
+		{
+				//VARIABLES
+				var valor=parseFloat(document.getElementById("cantidad").value);
+        }
+	</script>	
+</body>
+</html>

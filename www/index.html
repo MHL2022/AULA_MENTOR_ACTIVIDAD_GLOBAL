@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>		
+
+	<meta charset="utf-8" />	
+
+	<title>Trabajo Global</title>
+
+
+	<!-- Definición de los archivos JS y CSS de forma local en nuestro servidor -->
+
+	<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+
+	<script type="text/javascript" src="js/jquery.mobile-1.4.3.min.js"></script>
+
+	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+	<script src="js/app.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.3.min.css">
+	<!-- fichero de estilo personalizado usando jquery -->
+	<link rel="stylesheet" href="css/themes/marco.min.css" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+	<link rel="stylesheet" type="text/css" href="css/miestilo.css">
+
+	
+		
+		
+
+</head>
+
+<body>
+		<!-- PAGINA NUEVA -->
+	<section id="inicio" data-role="page">
+		<header data-role="header"  data-theme="a">
+			<h1>CRYPTOLANDIA</h1>
+		</header>
+		<div id="imagenempresa">
+			<img id="bitcoin" src="img/BTC.png" />
+		</div>
+		<article data-role="content">
+			<!-- CONTENIDO DE LA PÁGINA CRYPTOCALCULADORA-->
+			    
+				<span class="label label-success"></span>
+
+					<h1>CRYPTOCALCULADORA</h1>
+					<div class="row">
+					  <div class="col-xs-12"> 
+					    <form name="formulario" id="formulario">
+					            <span class="label label-warning">Cantidad Inicial</span>
+					            <input class="form-control" type="text" name="cantidad" id="cantidad" onChange="calcular()">
+					            <br>
+
+					            <span class="label label-warning">Tipo de Cambio</span>
+					            <select class="form-control" name="opciones" id="opciones" onChange="calcular()">
+					              <option value="dol_bit">Dolares a Bitcoin</option>
+					              <option value="bit_dol">Bitcoin a Dolares</option>
+					              <option value="eu_bit">Euros a Bitcoin</option>
+					              <option value="bit_eu">Bitcoin a Euros</option>
+					              <option value="eu_eth">Euros a Ethereum</option>
+					              <option value="eth_eu">Ethereum a Euros</option>
+					            </select>
+					            <br>
+
+					            <span class="label label-success">Resultado - Cambio</span>
+					            <input class="form-control" type="text" name="resultado" readonly="readonly">
+					            <br>
+
+					            <button type="button" class="btn btn-info" onclick="limpiar()">LIMPIAR</button>
+					    </form>
+					  </div>
+					  <div class="col-sm-12"> 
+					    
+					  </div>
+					  <div class="col-md-12"> 
+					    
+					  </div>
+					 
+					</div>
+					<script id="jsbin-javascript">
+						//HICE LA PRUEBA A USAR VAL() EN LUGAR DE VALUE Y ME DA ERROR
+					  function limpiar(){
+					  document.getElementById("cantidad").value="";
+					  document.formulario.resultado.value ="";
+					}
+					//VARIABLES Y LA FUNCIÓN CALCULAR
+					  function calcular (){
+					  var tipo = document.getElementById("opciones").value;
+					  var cantidad = document.getElementById("cantidad").value;
+					  var resultado;
+					  
+					  if( (cantidad - 0) != cantidad && (''+cantidad).replace(/^\s+|\s+$/g, "").length > 0)
+					    {
+					      alert("Ingrese numeros");
+					      return false;
+					    }
+					    //CONVERSIONES://DOLAR A BITCOIN Y VICEVERSA
+					  else
+					    {
+					      if(tipo === "dol_bit")   
+					        {
+					        resultado = cantidad / 57571.20;
+					        }
+					      else if (tipo === "bit_dol")
+					        {
+					        resultado = cantidad * 57571.20;
+					        }
+					     //CONVERSIONES://EURO A BITCOIN Y VICEVERSA   
+					      else if (tipo === "eu_bit")
+					        {
+					        resultado = cantidad / 57571.20;
+					        }
+					      else if (tipo === "bit_eu")
+					        {
+					        resultado = cantidad * 57571.20;
+					        }
+					      //CONVERSIONES://EURO A ETHEREUM Y VICEVERSA  
+					      else if (tipo === "eu_eth")
+					        {
+					        resultado = cantidad / 3918.11;
+					        }
+					      else if (tipo === "eth_eu")
+					        {
+					        resultado = cantidad * 3918.11;
+					        }
+					        //RESULTADO
+					      return document.formulario.resultado.value = resultado;
+					    }
+					}
+					</script>
+
+
+
+					
+		<div id="usuarios"data-role="collapsible">
+		    <h3>Usuarios Conectados</h3>
+		   <ul data-role="listview" data-inset="true">
+			
+				<li>
+					<img src="img/marco.jpg">
+					<h3>Marco Camacho Gutierrez</h3>
+					<p>@marcocg</p>  
+				</li>
+				<li>
+					<img src="img/maria.jpg">
+					<h3>Maria Ledesma</h3>
+					<p>@marialedesma</p>  
+				</li>
+				<li>
+					<img src="img/victor.jpg">
+					<h3>Victor Hugo Villanueva</h3>
+					<p>@victor_1976</p>  
+				</li>
+				
+			</ul>
+		</div>
+
+		<!--PIE DE PÁGINA/FOOTER-->
+
+		<footer data-role="footer" data-id="menuInferior" data-position="fixed" data-theme="a">
+			<nav data-role="navbar">
+				<ul>
+					<li><a href="#inicio" class="ui-btn-active ui-state-persist" data-icon="home">Inicio</a></li>
+					<li><a href="#exchanges" data-icon="shop">Exchange</a></li>
+					<li><a href="#noticias" data-icon="info">Noticias</a></li>
+					<li><a href="#contactar" data-icon="mail">Contacto</a></li>
+					<li><a href="index2.html" data-icon="arrow-u-r" data-ajax="false">Versión Web</a></li>
+					
+				</ul>
+			</nav>
+		</footer><!-- /footer -->
+
+	</section><!-- /page -->
+	
+
+<!-- PAGINA NUEVA -->
+<!--SECCIÓN DE EXCHANGES-->		
+<section id="exchanges" data-role="page">
+		<header data-role="header"  data-theme="a">
+			<h1>CRYPTOLANDIA</h1>
+		</header>
+		<div id="imagenempresa">
+			<img id="bitcoin" src="img/BTC.png" />
+		</div>
+
+<!--DIVISAS-->
+<div id="oferta" data-role="collapsible" >
+		    <h3>Divisas</h3>
+		<ul data-role="listview" data-inset="true">
+			
+				<li>
+					<img id="crypto"    src="img/bitcoin.png">
+					<h3>Bitcoin-----------58,854.65 USD</h3>
+				</li>
+				<li>
+					<img id="crypto" src="img/ethereum.png">
+					<h3>Ethereum--------58,854.65 USD</h3> 
+				</li>
+				<li>
+					<img id="crypto" src="img/monero.png">
+					<h3>Monero-----------58,854.65 USD</h3> 
+				</li>
+				<li>
+					<img id="crypto" src="img/zcash.png">
+					<h3>Zcash-------------58,854.65 USD</h3>
+				</li>
+				<li>
+					<img id="crypto" src="img/Neo.png">
+					<h3>Neo---------------58,854.65 USD</h3>
+				</li>
+				<li>
+					<img id="crypto" src="img/dash.png">
+					<h3>Dash--------------58,854.65 USD</h3>  
+				</li>
+				<li>
+					<img id="crypto" src="img/litecoin.png">
+					<h3>Litecoin----------58,854.65 USD</h3> 
+				</li>
+				<li>
+					<img id="crypto" src="img/Ripple.png">
+					<h3>Ripple------------58,854.65 USD</h3>
+				</li>
+				<li>
+					<img id="crypto" src="img/iota.png">
+					<h3>Iota---------------58,854.65 USD</h3>
+				</li>
+			</ul>
+
+		</div>
+	</div>
+<!--PIE DE PÁGINA/FOOTER-->
+
+		<footer data-role="footer" data-id="menuInferior" data-position="fixed" data-theme="a">
+			<nav data-role="navbar">
+				<ul>
+					<li><a href="#inicio"  data-icon="home">Inicio</a></li>
+					<li><a href="#exchanges"class="ui-btn-active ui-state-persist" data-icon="shop">Exchanges</a></li>
+					<li><a href="#noticias" data-icon="info">Noticias</a></li>
+					<li><a href="#contactar" data-icon="mail">Contacto</a></li>
+					<li><a href="index2.html" data-icon="arrow-u-r" data-ajax="false">Versión Web</a></li>
+					
+				</ul>
+			</nav>
+		</footer><!-- /footer -->
+
+</section><!-- /page -->
+
+<!-- PAGINA NUEVA -->			
+<!--SECCIÓN DE NOTICIAS / DESPLEGABLE CON TEXTO E IMÁGENES-->
+
+
+<section id="noticias" data-role="page">
+		<header data-role="header"  data-theme="a">
+			<h1>CRYPTOLANDIA</h1>
+		</header>
+		<div id="imagenempresa">
+			<img id="bitcoin" src="img/BTC.png" />
+		</div>
+
+
+		<div id="historia" data-role="collapsible">
+			<h3>Actualidad</h3>
+		<div id="woman">
+					<img id="corteingles"src="img/corteingles.jpg">
+			</div>
+		    <h3>El Corte Inglés registra la marca Bitcor</h3>
+		    <p>El Corte Inglés, la tienda por almacén más grande de España, solicitó una patente para registrar la marca Bitcor con el objetivo de prestar servicios financieros.</p>
+
+			<a href="https://www.criptonoticias.com/negocios/el-corte-ingles-registra-nombre-negocio-bitcon-criptomondas/" target="_blank">continuar leyendo el artículo</a>
+		</div>
+
+		<div id="estamos"data-role="collapsible">
+		    <h3>Gráfica de Cotización</h3>
+		   <div id="localizacion">
+		   	<p id="cotiza">59.157,9000 USD</p> 
+		   	<p id="hora">21:00:45</p>
+		   	
+		   </div>
+			<div id="imagenmapa">
+			<img id="grafica"src="img/grafica cotizacion 1.png">	
+			</div>
+		</div>
+
+		<div id="somos" data-role="collapsible" >
+		    <h3>¿Quiénes somos?</h3>
+			    <ul data-role="listview" data-inset="true">
+			
+				<div id="woman">
+					<img id="mujer1"src="img/mujer1.jpg">
+					<img id="mujer4"src="img/mujer4.jpg">
+				</div>
+			
+			</ul>
+		</div>
+		
+	
+		
+
+		<!--PIE DE PÁGINA/FOOTER-->
+		<footer data-role="footer" data-id="menuInferior" data-position="fixed" data-theme="a">
+			<nav data-role="navbar">
+				<ul>
+					<li><a href="#inicio"  data-icon="home">Inicio</a></li>
+					<li><a href="#exchanges" data-icon="shop">Exchange</a></li>
+					<li><a href="#empresa" class="ui-btn-active ui-state-persist" data-icon="info">Noticias</a></li>
+					<li><a href="#contactar" data-icon="mail">Contacto</a></li>
+					<li><a href="index2.html" data-icon="arrow-u-r" data-ajax="false">Versión Web</a></li>
+					
+				</ul>
+			</nav>
+		</footer><!-- /footer -->
+
+</section><!-- /page -->
+
+<!-- PAGINA NUEVA -->	
+<!--div con menu desplegable que alberga contenido-->		
+		
+<section id="contactar" data-role="page">
+		<header data-role="header"  data-theme="a">
+			<h1>CRYPTOLANDIA</h1>
+		</header>
+		<div id="imagenempresa">
+			<img id="bitcoin" src="img/BTC.png" />
+		</div>
+
+			<div id="telefono" data-role="collapsible">
+		    <h3>Llámanos</h3>
+		     <ul data-role="listview" data-inset="true">
+			
+				<div id="fono">
+					<p>Tlf. Información: (+34) 123 345 678</p>
+		   			<p>Tlf. Soporte: (+34) 123 345 678</p>
+		   			<p>Fax: (+34) 123 345 678</p>
+				</div>
+			</ul>
+		</div>
+
+		<div id="skype" data-role="collapsible" >
+		    <h3>Skype</h3>
+			    <ul data-role="listview" data-inset="true">
+			
+				<div id="online">
+					<li><a href="https://www.skype.com/es/" target="_blank">empresa.conecta.online</a></li>
+		   			<li><a href="https://www.skype.com/es/" target="_blank">soporte.conecta.online</a></li>
+				</div>
+			
+			</ul>
+		</div>
+		
+	
+		<div id="redessociales"data-role="collapsible">
+		    <h3>Redes Sociales</h3>
+		    <ul data-role = "listview" data-inset="true">
+		    <div id="redesvarias">
+		   
+				<li><a href="https://www.facebook.com/login/" target="_blank">Facebook</a></li>
+			   	<li><a href="https://twitter.com/?lang=es" target="_blank">Twitter</a></li>
+			   	<li><a href="https://es.linkedin.com/" target="_blank">LinkedIn</a></li>		
+			
+			</div>
+		</ul>
+		</div>
+
+		<div id="email"data-role="collapsible">
+		    <h3>Envíanos un correo</h3>
+		   <div id="departamentosmail">
+			   	<a href="mailto:marialedesma2020@yahoo.com">Dpto. Compras Internacional</a></p>
+			   	<a href="mailto:mariadelhuertoes@yahoo.es">Dpto. Atención al Cliente</a></p>
+			   	<a href="mariamercedesdelhuerto@gmail.com">Dpto. Soporte Técnico</a></p>
+			   	<a href="viatsat@gmail.com">Dpto. Recursos Humanos</a></p>
+		   </div>
+			
+		</div>
+
+		<div id="formulario"data-role="collapsible">
+		    <h3>Evíanos un mensaje</h3>
+		   <form method="post" name="formularioContactar" action="enviar.php" id="formularioContactar" >
+
+			<label for="nombreContactar">Introduce tu nombre</label>
+			<input type="text" name="nombreContactar" id="nombreContactar" placeholder="Introduce tu nombre" required>
+
+			<label for="apellidosContactar">Introduce tus apellidos</label>
+			<input type="text" name="apellidosContactar" id="apellidosContactar" placeholder="Introduce tus apellidos" required>
+
+			<label for="mailContactar">Introduce tu email</label>
+			<input type="email" name="mailContactar" id="mailContactar" placeholder="Introduce tu email" required>
+
+			<label for="comentariosContactar">Comentarios</label>
+			<textarea cols="40" rows="10" name="comentariosContactar" id="comentariosContactar" placeholder="Comentarios" required></textarea>
+
+			<input type="submit" name="btnEnviar" id="btnEnviar" value="ENVIAR FORMULARIO">
+			<input type="reset" name="btnreset" value="Restaurar valores por defecto"/>
+
+		</form>
+				
+		</div>
+
+		<!--PIE DE PÁGINA/FOOTER-->
+		
+		<footer data-role="footer" data-id="menuInferior" data-position="fixed" data-theme="a">
+			<nav data-role="navbar">
+				<ul>
+					<li><a href="#inicio"  data-icon="home">Inicio</a></li>
+					<li><a href="#exchanges" data-icon="shop">Exchange</a></li>
+					<li><a href="#noticias" data-icon="info">Noticias</a></li>
+					<li><a href="#contactar"class="ui-btn-active ui-state-persist" data-icon="mail">Contacto</a></li>
+					<li><a href="index2.html" data-icon="arrow-u-r" data-ajax="false">Versión Web</a></li>
+					
+				</ul>
+			</nav>
+		</footer><!-- /footer -->
+
+</section><!-- /page -->
+	<!--div con menu desplegable que alberga contenido-->		
+		
+</body>
+</html>
+
+

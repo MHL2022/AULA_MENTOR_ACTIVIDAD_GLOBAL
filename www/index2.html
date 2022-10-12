@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<!-- Abrimos la etiqueta de la página -->
+<html lang="es">
+<!-- Definimos el head -->
+<head>
+    <title> CRYPTOLANDIA</title>
+    <meta charset="utf-8" />
+    <!--<link rel="stylesheet" type="text/css" href="css/miestiloTG.css">-->
+    <!-- ESTILOS -->
+  
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/themes/marco.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/miestiloTG.css">
+    <!-- JAVA SCRIPT Y JQUERY -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  
+  
+     <!-- ESTILOS DE LA CRYPTOCALCULADORA -->  
+  <style type="text/css"> 
+
+      .label-warning{
+        background-color:#33cccc;
+        text-align:center;
+       
+    }
+      .label-success {
+         background-color:#33cccc;
+        
+    }
+      .row{
+        text-align:center;
+        background-color:#ece683;
+      
+      
+        
+    }
+
+    .col-xs-12{
+      
+        margin:50px auto;
+        background-color:#ece683;
+          
+    }
+
+    body{
+        background-color:#ece683;
+    }
+  </style>
+
+</head>
+<body style="text-align:center;">   
+    
+<header></header>
+       
+<nav id="menu"><!-- menú de navegación superior -->
+        <ul>
+            <li><a href="index2.html">INICIO</a></li>                             
+
+            <li><a href="exchange.html">EXCHANGE</a></li>                      
+     
+            <li><a href="noticias.html">NOTICIAS</a></li> 
+
+            <li><a href="juegos.html">JUEGOS</a></li>
+
+            <li><a href="contacto.html">CONTACTO</a></li> 
+
+            <li><a href="index.html">Versión Móbil </a></li>                            
+        </ul>
+</nav>
+<section>
+    <article>
+
+
+      <div id="contenido">
+       
+
+            
+        </div>
+        
+        
+        <div class="columna">
+         <a href="index.html"><img id="moneda2" border="0"src="img/conmutador.png">  </a>
+        </div>
+
+        <div class="columna">
+          <!-- CRYPTOCALCULADORA -->  
+<div class="row">
+  <div class="col-xs-12"> 
+    <h1>
+        <span class="label label-success" >CRYPTOCALCULADORA</span>
+    </h1><br><br>
+    <form name="formulario" id="formulario">
+            <span class="label label-warning">Cantidad Inicial</span>
+            <input class="form-control" type="text" name="cantidad" id="cantidad" onChange="calcular()">
+            <br>
+
+                      <span class="label label-warning">Tipo de Cambio</span>
+                      <select class="form-control" name="opciones" id="opciones" onChange="calcular()">
+                        <option value="dol_bit">Dolares a Bitcoin</option>
+                        <option value="bit_dol">Bitcoin a Dolares</option>
+                        <option value="eu_bit">Euros a Bitcoin</option>
+                        <option value="bit_eu">Bitcoin a Euros</option>
+                        <option value="eu_eth">Euros a Ethereum</option>
+                        <option value="eth_eu">Ethereum a Euros</option>
+                      </select>
+                      <br>
+
+                      <span class="label label-success">Resultado - Cambio</span>
+                      <input class="form-control" type="text" name="resultado" readonly="readonly">
+                      <br>
+
+                      <button type="button" class="btn btn-info" onclick="limpiar()">LIMPIAR</button>
+              </form>
+            </div>
+            <div class="col-sm-12"> 
+              
+            </div>
+            
+          <div>
+          <script id="jsbin-javascript">
+            //HICE LA PRUEBA A USAR VAL() EN LUGAR DE VALUE Y ME DA ERROR
+            function limpiar(){
+            document.getElementById("cantidad").value="";
+            document.formulario.resultado.value ="";
+          }
+          //VARIABLES Y LA FUNCIÓN CALCULAR
+            function calcular (){
+            var tipo = document.getElementById("opciones").value;
+            var cantidad = document.getElementById("cantidad").value;
+            var resultado;
+            
+            if( (cantidad - 0) != cantidad && (''+cantidad).replace(/^\s+|\s+$/g, "").length > 0)
+              {
+                alert("Ingrese numeros");
+                return false;
+              }
+              //CONVERSIONES://DOLAR A BITCOIN Y VICEVERSA
+            else
+              {
+                if(tipo === "dol_bit")   
+                  {
+                  resultado = cantidad / 57571.20;
+                  }
+                else if (tipo === "bit_dol")
+                  {
+                  resultado = cantidad * 57571.20;
+                  }
+               //CONVERSIONES://EURO A BITCOIN Y VICEVERSA   
+                else if (tipo === "eu_bit")
+                  {
+                  resultado = cantidad / 57571.20;
+                  }
+                else if (tipo === "bit_eu")
+                  {
+                  resultado = cantidad * 57571.20;
+                  }
+                //CONVERSIONES://EURO A ETHEREUM Y VICEVERSA  
+                else if (tipo === "eu_eth")
+                  {
+                  resultado = cantidad / 3918.11;
+                  }
+                else if (tipo === "eth_eu")
+                  {
+                  resultado = cantidad * 3918.11;
+                  }
+                  //RESULTADO
+                return document.formulario.resultado.value = resultado;
+              }
+          }
+          </script>
+        </div>
+
+        <div class="columna">
+         <!-- Sección de artículos sobre salud.-->
+        </div>
+
+      </div>
+
+
+    </article>
+
+  </section>
+
+
+    
+</body>
+</html>
